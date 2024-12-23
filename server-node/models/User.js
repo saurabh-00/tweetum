@@ -40,6 +40,12 @@ const userSchema = new mongoose.Schema({
     timestamps: true
 });
 
+userSchema.virtual("safe").get(function () {
+    const user = this.toObject();
+    delete user.password;
+    return user;
+});
+
 const User = mongoose.model("User", userSchema);
 
 export default User;
