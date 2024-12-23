@@ -17,18 +17,18 @@ import Dropzone from "react-dropzone";
 import FlexBetween from "components/FlexBetween";
 
 const registerSchema = yup.object().shape({
-  firstName: yup.string().required("required"),
-  lastName: yup.string().required("required"),
-  email: yup.string().email("invalid email").required("required"),
-  password: yup.string().required("required"),
-  location: yup.string().required("required"),
-  occupation: yup.string().required("required"),
-  picture: yup.string().required("required"),
+  firstName: yup.string().required("This is required"),
+  lastName: yup.string().required("This is required"),
+  email: yup.string().email("Invalid email").required("This is required"),
+  password: yup.string().min(5, 'Password must be at least 5 characters').required("This is required"),
+  location: yup.string().required("This is required"),
+  occupation: yup.string().required("This is required"),
+  picture: yup.string().required("This is required"),
 });
 
 const loginSchema = yup.object().shape({
-  email: yup.string().email("invalid email").required("required"),
-  password: yup.string().required("required"),
+  email: yup.string().email("Invalid email").required("This is required"),
+  password: yup.string().required("This is required"),
 });
 
 const initialValuesRegister = {
@@ -56,26 +56,26 @@ const Form = () => {
   const isRegister = pageType === "register";
 
   const register = async (values, onSubmitProps) => {
-    // send form info with image
-    const formData = new FormData();
-    for (let value in values) {
-      formData.append(value, values[value]);
-    }
-    formData.append("picturePath", values.picture.name);
+        // send form info with image
+        const formData = new FormData();
+        for (let value in values) {
+            formData.append(value, values[value]);
+        }
+        formData.append("picturePath", values.picture.name);
 
-    const savedUserResponse = await fetch(
-      "http://localhost:3001/auth/register",
-      {
-        method: "POST",
-        body: formData,
-      }
-    );
-    const savedUser = await savedUserResponse.json();
-    onSubmitProps.resetForm();
+        const savedUserResponse = await fetch(
+        "http://localhost:3001/auth/register",
+        {
+            method: "POST",
+            body: formData,
+        }
+        );
+        const savedUser = await savedUserResponse.json();
+        onSubmitProps.resetForm();
 
-    if (savedUser) {
-      setPageType("login");
-    }
+        if (savedUser) {
+        setPageType("login");
+        }
   };
 
   const login = async (values, onSubmitProps) => {
