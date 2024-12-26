@@ -1,2 +1,2 @@
-const url = 'http://localhost:3001';
+const url = 'https://tweetum-backend.onrender.com';
 export default url;
