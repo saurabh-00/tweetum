@@ -45,7 +45,6 @@ import {
       occupation,
       viewedProfile,
       impressions,
-      friends,
     } = user;
   
     return (
@@ -72,7 +71,6 @@ import {
               >
                 {firstName} {lastName}
               </Typography>
-              <Typography color={medium}>{friends.length} friends</Typography>
             </Box>
           </FlexBetween>
           <ManageAccountsOutlined />

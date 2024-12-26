@@ -29,14 +29,18 @@ const FriendListWidget = ({ userId }) => {
 
   return (
     <WidgetWrapper>
-      <Typography
-        color={palette.neutral.dark}
-        variant="h5"
-        fontWeight="500"
-        sx={{ mb: "1.5rem" }}
-      >
-        Friend List
-      </Typography>
+      <Box display="flex" alignItems="center" gap="0.5rem" sx={{ mb: "1.5rem" }}>
+        <Typography
+          color={palette.neutral.dark}
+          variant="h5"
+          fontWeight="500"
+        >
+          Friend List
+        </Typography>
+        <Typography
+          variant="h6"
+        >({friends.length})</Typography>
+      </Box>
       <Box display="flex" flexDirection="column" gap="1.5rem">
         {friends.map((friend) => (
           <Friend
