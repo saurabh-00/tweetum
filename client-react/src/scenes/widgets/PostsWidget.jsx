@@ -17,7 +17,7 @@ const PostsWidget = ({ userId, isProfile = false }) => {
     dispatch(setPosts({ posts: data }));
   };
 
-  const getUserPosts = async () => {
+  const getUserPosts = async (userId) => {
     const response = await fetch(
       `http://localhost:3001/posts/${userId}/posts`,
       {
@@ -31,11 +31,11 @@ const PostsWidget = ({ userId, isProfile = false }) => {
 
   useEffect(() => {
     if (isProfile) {
-      getUserPosts();
+      getUserPosts(userId);
     } else {
       getPosts();
     }
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [userId]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <>

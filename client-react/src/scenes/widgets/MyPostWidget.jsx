@@ -158,9 +158,12 @@ import {
             disabled={!post}
             onClick={handlePost}
             sx={{
-              color: palette.background.alt,
+              color: palette.background.default,
               backgroundColor: palette.primary.main,
               borderRadius: "3rem",
+              "&:disabled": {
+                color: palette.primary.dark
+              }
             }}
           >
             POST

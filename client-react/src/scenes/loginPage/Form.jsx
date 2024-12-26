@@ -242,7 +242,8 @@ const Form = () => {
                 p: "1rem",
                 backgroundColor: palette.primary.main,
                 color: palette.background.alt,
-                "&:hover": { color: palette.primary.main },
+                "&:hover": { color: palette.primary.dark },
+                "&:disabled": { color: palette.primary.dark }
               }}
             >
               {isLogin ? "LOGIN" : "REGISTER"}
@@ -257,7 +258,7 @@ const Form = () => {
                 color: palette.primary.main,
                 "&:hover": {
                   cursor: "pointer",
-                  color: palette.primary.light,
+                  color: palette.primary.dark,
                 },
               }}
             >

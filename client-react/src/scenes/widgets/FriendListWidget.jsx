@@ -11,7 +11,7 @@ const FriendListWidget = ({ userId }) => {
   const token = useSelector((state) => state.token);
   const friends = useSelector((state) => state.user.friends);
 
-  const getFriends = async () => {
+  const getFriends = async (userId) => {
     const response = await fetch(
       `http://localhost:3001/users/${userId}/friends`,
       {
@@ -24,8 +24,8 @@ const FriendListWidget = ({ userId }) => {
   };
 
   useEffect(() => {
-    getFriends();
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+    getFriends(userId);
+  }, [userId]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <WidgetWrapper>

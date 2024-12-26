@@ -13,7 +13,7 @@ const ProfilePage = () => {
   const token = useSelector((state) => state.token);
   const isNonMobileScreens = useMediaQuery("(min-width:1000px)");
 
-  const getUser = async () => {
+  const getUser = async (userId) => {
     const response = await fetch(`http://localhost:3001/users/${userId}`, {
       method: "GET",
       headers: { Authorization: `Bearer ${token}` },
@@ -23,8 +23,13 @@ const ProfilePage = () => {
   };
 
   useEffect(() => {
-    getUser();
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth"
+    });
+    getUser(userId);
+  }, [userId]); // eslint-disable-line react-hooks/exhaustive-deps
 
   if (!user) return null;
 
@@ -39,7 +44,7 @@ const ProfilePage = () => {
         justifyContent="center"
       >
         <Box flexBasis={isNonMobileScreens ? "26%" : undefined}>
-          <UserWidget userId={userId} picturePath={user.picturePath} />
+          <UserWidget userId={userId} picturePath={user.picturePath} user={user} />
           <Box m="2rem 0" />
           <FriendListWidget userId={userId} />
         </Box>
